@@ -1,0 +1,1186 @@
+[2026-10-03 17:54:02] Starting ETL...
+python3: can't open file '/home/rose/Documents/RoseGitHub/Project2/PSQL_CSV_DB1.py': [Errno 2] No such file or directory
+[2026-10-03 17:54:02] ETL completed.
+[2026-10-03 17:55:57] Starting ETL...
+Connected to PostgreSQL!
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1943, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "dim_customers" does not exist
+LINE 1: SELECT * FROM dim_customers;
+                      ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1679, in execute
+    return execute_function(sql, *args)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1755, in exec_driver_sql
+    ret = self._execute_context(
+        dialect,
+    ...<5 lines>...
+        distilled_parameters,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1822, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1962, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2332, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1943, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "dim_customers" does not exist
+LINE 1: SELECT * FROM dim_customers;
+                      ^
+
+[SQL: SELECT * FROM dim_customers;]
+(Background on this error at: https://sqlalche.me/e/21/f405)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/PSQL_CSV_DB1.py", line 48, in <module>
+    dim_customers = pd.read_sql("SELECT * FROM dim_customers;", engine)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 730, in read_sql
+    return pandas_sql.read_query(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        sql,
+        ^^^^
+    ...<6 lines>...
+        dtype=dtype,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1856, in read_query
+    result = self.execute(sql, params)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1681, in execute
+    raise DatabaseError(f"Execution failed on sql '{sql}': {exc}") from exc
+pandas.errors.DatabaseError: Execution failed on sql 'SELECT * FROM dim_customers;': (psycopg2.errors.UndefinedTable) relation "dim_customers" does not exist
+LINE 1: SELECT * FROM dim_customers;
+                      ^
+
+[SQL: SELECT * FROM dim_customers;]
+(Background on this error at: https://sqlalche.me/e/21/f405)
+[2026-10-03 17:55:57] ETL completed.
+[2026-10-03 17:57:32] Starting ETL...
+Connected to PostgreSQL!
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/PSQL_CSV_DB1.py", line 72, in <module>
+    df = df.merge(
+        dim_date[["date_key", "full_date"]],
+    ...<2 lines>...
+        how="left"
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/frame.py", line 12902, in merge
+    return merge(
+        self,
+    ...<10 lines>...
+        validate=validate,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/reshape/merge.py", line 385, in merge
+    op = _MergeOperation(
+        left_df,
+    ...<10 lines>...
+        validate=validate,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/reshape/merge.py", line 1031, in __init__
+    self._maybe_coerce_merge_keys()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/reshape/merge.py", line 1839, in _maybe_coerce_merge_keys
+    raise ValueError(msg)
+ValueError: You are trying to merge on datetime64[us] and object columns for key 'order_date'. If you wish to proceed you should use pd.concat
+[2026-10-03 17:57:32] ETL completed.
+[2026-10-03 18:00:41] Starting ETL...
+Connected to PostgreSQL!
+fact_sales updated!
+fact_sales_summary updated!
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2094, in _exec_insertmany_context
+    dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column "order_total" of relation "order_totals" does not exist
+LINE 1: INSERT INTO order_totals (order_id, order_total) VALUES (100...
+                                            ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1679, in execute
+    return execute_function(sql, *args)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1448, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/sql/elements.py", line 533, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<9 lines>...
+        param_dict=param_dict,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1820, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2111, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e,
+        ^^
+    ...<4 lines>...
+        is_sub_exec=True,
+        ^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2332, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2094, in _exec_insertmany_context
+    dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column "order_total" of relation "order_totals" does not exist
+LINE 1: INSERT INTO order_totals (order_id, order_total) VALUES (100...
+                                            ^
+
+[SQL: INSERT INTO order_totals (order_id, order_total) VALUES (%(order_id__0)s, %(order_total__0)s), (%(order_id__1)s, %(order_total__1)s), (%(order_id__2)s, %(order_total__2)s), (%(order_id__3)s, %(order_total__3)s), (%(order_id__4)s, %(order_total__4)s), ... 627 characters truncated ... order_total__20)s), (%(order_id__21)s, %(order_total__21)s), (%(order_id__22)s, %(order_total__22)s)]
+[parameters: {'order_id__0': 1001, 'order_total__0': 59.97, 'order_id__1': 1002, 'order_total__1': 5.49, 'order_id__2': 1003, 'order_total__2': 51.0, 'order_id__3': 1004, 'order_total__3': 39.98, 'order_id__4': 1005, 'order_total__4': 19.5, 'order_id__5': 1007, 'order_total__5': 116.0, 'order_id__6': 1009, 'order_total__6': 39.95, 'order_id__7': 1012, 'order_total__7': 44.1, 'order_id__8': 1013, 'order_total__8': 105.0, 'order_id__9': 1014, 'order_total__9': 798.75, 'order_id__10': 1015, 'order_total__10': 199.98, 'order_id__11': 1016, 'order_total__11': 480.0, 'order_id__12': 1017, 'order_total__12': 52.5, 'order_id__13': 1018, 'order_total__13': 132.0, 'order_id__14': 1019, 'order_total__14': 199.99, 'order_id__15': 1020, 'order_total__15': 47.88, 'order_id__16': 1021, 'order_total__16': 104.93, 'order_id__17': 1022, 'order_total__17': 17.5, 'order_id__18': 1023, 'order_total__18': 110.5, 'order_id__19': 1024, 'order_total__19': 51.0, 'order_id__20': 1025, 'order_total__20': 404.91, 'order_id__21': 1027, 'order_total__21': 221.0, 'order_id__22': 1029, 'order_total__22': 96.0}]
+(Background on this error at: https://sqlalche.me/e/21/f405)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/PSQL_CSV_DB1.py", line 127, in <module>
+    order_totals.to_sql(
+    ~~~~~~~~~~~~~~~~~~~^
+        "order_totals",
+        ^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        index=False
+        ^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/generic.py", line 3040, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 841, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 2037, in to_sql
+    total_inserted = sql_engine.insert_records(
+        table=table,
+    ...<7 lines>...
+        **engine_kwargs,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1571, in insert_records
+    return table.insert(chunksize=chunksize, method=method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1122, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1014, in _execute_insert
+    result = self.pd_sql.execute(self.table.insert(), data)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1681, in execute
+    raise DatabaseError(f"Execution failed on sql '{sql}': {exc}") from exc
+pandas.errors.DatabaseError: Execution failed on sql 'INSERT INTO order_totals (order_id, order_total) VALUES (:order_id, :order_total)': (psycopg2.errors.UndefinedColumn) column "order_total" of relation "order_totals" does not exist
+LINE 1: INSERT INTO order_totals (order_id, order_total) VALUES (100...
+                                            ^
+
+[SQL: INSERT INTO order_totals (order_id, order_total) VALUES (%(order_id__0)s, %(order_total__0)s), (%(order_id__1)s, %(order_total__1)s), (%(order_id__2)s, %(order_total__2)s), (%(order_id__3)s, %(order_total__3)s), (%(order_id__4)s, %(order_total__4)s), ... 627 characters truncated ... order_total__20)s), (%(order_id__21)s, %(order_total__21)s), (%(order_id__22)s, %(order_total__22)s)]
+[parameters: {'order_id__0': 1001, 'order_total__0': 59.97, 'order_id__1': 1002, 'order_total__1': 5.49, 'order_id__2': 1003, 'order_total__2': 51.0, 'order_id__3': 1004, 'order_total__3': 39.98, 'order_id__4': 1005, 'order_total__4': 19.5, 'order_id__5': 1007, 'order_total__5': 116.0, 'order_id__6': 1009, 'order_total__6': 39.95, 'order_id__7': 1012, 'order_total__7': 44.1, 'order_id__8': 1013, 'order_total__8': 105.0, 'order_id__9': 1014, 'order_total__9': 798.75, 'order_id__10': 1015, 'order_total__10': 199.98, 'order_id__11': 1016, 'order_total__11': 480.0, 'order_id__12': 1017, 'order_total__12': 52.5, 'order_id__13': 1018, 'order_total__13': 132.0, 'order_id__14': 1019, 'order_total__14': 199.99, 'order_id__15': 1020, 'order_total__15': 47.88, 'order_id__16': 1021, 'order_total__16': 104.93, 'order_id__17': 1022, 'order_total__17': 17.5, 'order_id__18': 1023, 'order_total__18': 110.5, 'order_id__19': 1024, 'order_total__19': 51.0, 'order_id__20': 1025, 'order_total__20': 404.91, 'order_id__21': 1027, 'order_total__21': 221.0, 'order_id__22': 1029, 'order_total__22': 96.0}]
+(Background on this error at: https://sqlalche.me/e/21/f405)
+[2026-10-03 18:00:41] ETL completed.
+[2026-10-03 18:05:23] Starting ETL...
+Connected to PostgreSQL!
+fact_sales updated!
+fact_sales_summary updated!
+order_totals updated!
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2094, in _exec_insertmany_context
+    dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column "total_amount" of relation "orders" does not exist
+LINE 1: ...T INTO orders (order_id, customer_id, order_date, total_amou...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1679, in execute
+    return execute_function(sql, *args)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1448, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/sql/elements.py", line 533, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<9 lines>...
+        param_dict=param_dict,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1820, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2111, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e,
+        ^^
+    ...<4 lines>...
+        is_sub_exec=True,
+        ^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2332, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2094, in _exec_insertmany_context
+    dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column "total_amount" of relation "orders" does not exist
+LINE 1: ...T INTO orders (order_id, customer_id, order_date, total_amou...
+                                                             ^
+
+[SQL: INSERT INTO orders (order_id, customer_id, order_date, total_amount) VALUES (%(order_id__0)s, %(customer_id__0)s, %(order_date__0)s, %(total_amount__0)s), (%(order_id__1)s, %(customer_id__1)s, %(order_date__1)s, %(total_amount__1)s), (%(order_id__2)s ... 1593 characters truncated ... tal_amount__21)s), (%(order_id__22)s, %(customer_id__22)s, %(order_date__22)s, %(total_amount__22)s)]
+[parameters: {'customer_id__0': 2001, 'order_id__0': 1001, 'order_date__0': datetime.datetime(2024, 1, 1, 0, 0), 'total_amount__0': 59.97, 'customer_id__1': 2002, 'order_id__1': 1002, 'order_date__1': datetime.datetime(2024, 1, 1, 0, 0), 'total_amount__1': 5.49, 'customer_id__2': 2003, 'order_id__2': 1003, 'order_date__2': datetime.datetime(2024, 1, 2, 0, 0), 'total_amount__2': 51.0, 'customer_id__3': 2004, 'order_id__3': 1004, 'order_date__3': datetime.datetime(2024, 1, 2, 0, 0), 'total_amount__3': 39.98, 'customer_id__4': 2005, 'order_id__4': 1005, 'order_date__4': datetime.datetime(2024, 1, 3, 0, 0), 'total_amount__4': 19.5, 'customer_id__5': 2007, 'order_id__5': 1007, 'order_date__5': datetime.datetime(2024, 1, 4, 0, 0), 'total_amount__5': 116.0, 'customer_id__6': 2009, 'order_id__6': 1009, 'order_date__6': datetime.datetime(2024, 1, 5, 0, 0), 'total_amount__6': 39.95, 'customer_id__7': 2012, 'order_id__7': 1012, 'order_date__7': datetime.datetime(2024, 1, 6, 0, 0), 'total_amount__7': 44.1, 'customer_id__8': 2013, 'order_id__8': 1013, 'order_date__8': datetime.datetime(2024, 1, 6, 0, 0), 'total_amount__8': 105.0, 'customer_id__9': 2014, 'order_id__9': 1014, 'order_date__9': datetime.datetime(2024, 1, 7, 0, 0), 'total_amount__9': 798.75, 'customer_id__10': 2015, 'order_id__10': 1015, 'order_date__10': datetime.datetime(2024, 1, 7, 0, 0), 'total_amount__10': 199.98, 'customer_id__11': 2016, 'order_id__11': 1016, 'order_date__11': datetime.datetime(2024, 1, 8, 0, 0), 'total_amount__11': 480.0, 'customer_id__12': 2017, 'order_id__12': 1017, 'order_date__12': datetime.datetime(2024, 1, 8, 0, 0), 'total_amount__12': 52.5, 'customer_id__13': 2018, 'order_id__13': 1018, 'order_date__13': datetime.datetime(2024, 1, 9, 0, 0), 'total_amount__13': 132.0, 'customer_id__14': 2019, 'order_id__14': 1019, 'order_date__14': datetime.datetime(2024, 1, 9, 0, 0), 'total_amount__14': 199.99, 'customer_id__15': 2020, 'order_id__15': 1020, 'order_date__15': datetime.datetime(2024, 1, 10, 0, 0), 'total_amount__15': 47.88, 'customer_id__16': 2001, 'order_id__16': 1021, 'order_date__16': datetime.datetime(2024, 1, 10, 0, 0), 'total_amount__16': 104.93, 'customer_id__17': 2002, 'order_id__17': 1022, 'order_date__17': datetime.datetime(2024, 1, 11, 0, 0), 'total_amount__17': 17.5, 'customer_id__18': 2003, 'order_id__18': 1023, 'order_date__18': datetime.datetime(2024, 1, 11, 0, 0), 'total_amount__18': 110.5, 'customer_id__19': 2004, 'order_id__19': 1024, 'order_date__19': datetime.datetime(2024, 1, 12, 0, 0), 'total_amount__19': 51.0, 'customer_id__20': 2005, 'order_id__20': 1025, 'order_date__20': datetime.datetime(2024, 1, 12, 0, 0), 'total_amount__20': 404.91, 'customer_id__21': 2007, 'order_id__21': 1027, 'order_date__21': datetime.datetime(2024, 1, 13, 0, 0), 'total_amount__21': 221.0, 'customer_id__22': 2009, 'order_id__22': 1029, 'order_date__22': datetime.datetime(2024, 1, 14, 0, 0), 'total_amount__22': 96.0}]
+(Background on this error at: https://sqlalche.me/e/21/f405)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/PSQL_CSV_DB1.py", line 147, in <module>
+    orders.to_sql(
+    ~~~~~~~~~~~~~^
+        "orders",
+        ^^^^^^^^^
+    ...<2 lines>...
+        index=False
+        ^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/generic.py", line 3040, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 841, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 2037, in to_sql
+    total_inserted = sql_engine.insert_records(
+        table=table,
+    ...<7 lines>...
+        **engine_kwargs,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1571, in insert_records
+    return table.insert(chunksize=chunksize, method=method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1122, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1014, in _execute_insert
+    result = self.pd_sql.execute(self.table.insert(), data)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1681, in execute
+    raise DatabaseError(f"Execution failed on sql '{sql}': {exc}") from exc
+pandas.errors.DatabaseError: Execution failed on sql 'INSERT INTO orders (order_id, customer_id, order_date, total_amount) VALUES (:order_id, :customer_id, :order_date, :total_amount)': (psycopg2.errors.UndefinedColumn) column "total_amount" of relation "orders" does not exist
+LINE 1: ...T INTO orders (order_id, customer_id, order_date, total_amou...
+                                                             ^
+
+[SQL: INSERT INTO orders (order_id, customer_id, order_date, total_amount) VALUES (%(order_id__0)s, %(customer_id__0)s, %(order_date__0)s, %(total_amount__0)s), (%(order_id__1)s, %(customer_id__1)s, %(order_date__1)s, %(total_amount__1)s), (%(order_id__2)s ... 1593 characters truncated ... tal_amount__21)s), (%(order_id__22)s, %(customer_id__22)s, %(order_date__22)s, %(total_amount__22)s)]
+[parameters: {'customer_id__0': 2001, 'order_id__0': 1001, 'order_date__0': datetime.datetime(2024, 1, 1, 0, 0), 'total_amount__0': 59.97, 'customer_id__1': 2002, 'order_id__1': 1002, 'order_date__1': datetime.datetime(2024, 1, 1, 0, 0), 'total_amount__1': 5.49, 'customer_id__2': 2003, 'order_id__2': 1003, 'order_date__2': datetime.datetime(2024, 1, 2, 0, 0), 'total_amount__2': 51.0, 'customer_id__3': 2004, 'order_id__3': 1004, 'order_date__3': datetime.datetime(2024, 1, 2, 0, 0), 'total_amount__3': 39.98, 'customer_id__4': 2005, 'order_id__4': 1005, 'order_date__4': datetime.datetime(2024, 1, 3, 0, 0), 'total_amount__4': 19.5, 'customer_id__5': 2007, 'order_id__5': 1007, 'order_date__5': datetime.datetime(2024, 1, 4, 0, 0), 'total_amount__5': 116.0, 'customer_id__6': 2009, 'order_id__6': 1009, 'order_date__6': datetime.datetime(2024, 1, 5, 0, 0), 'total_amount__6': 39.95, 'customer_id__7': 2012, 'order_id__7': 1012, 'order_date__7': datetime.datetime(2024, 1, 6, 0, 0), 'total_amount__7': 44.1, 'customer_id__8': 2013, 'order_id__8': 1013, 'order_date__8': datetime.datetime(2024, 1, 6, 0, 0), 'total_amount__8': 105.0, 'customer_id__9': 2014, 'order_id__9': 1014, 'order_date__9': datetime.datetime(2024, 1, 7, 0, 0), 'total_amount__9': 798.75, 'customer_id__10': 2015, 'order_id__10': 1015, 'order_date__10': datetime.datetime(2024, 1, 7, 0, 0), 'total_amount__10': 199.98, 'customer_id__11': 2016, 'order_id__11': 1016, 'order_date__11': datetime.datetime(2024, 1, 8, 0, 0), 'total_amount__11': 480.0, 'customer_id__12': 2017, 'order_id__12': 1017, 'order_date__12': datetime.datetime(2024, 1, 8, 0, 0), 'total_amount__12': 52.5, 'customer_id__13': 2018, 'order_id__13': 1018, 'order_date__13': datetime.datetime(2024, 1, 9, 0, 0), 'total_amount__13': 132.0, 'customer_id__14': 2019, 'order_id__14': 1019, 'order_date__14': datetime.datetime(2024, 1, 9, 0, 0), 'total_amount__14': 199.99, 'customer_id__15': 2020, 'order_id__15': 1020, 'order_date__15': datetime.datetime(2024, 1, 10, 0, 0), 'total_amount__15': 47.88, 'customer_id__16': 2001, 'order_id__16': 1021, 'order_date__16': datetime.datetime(2024, 1, 10, 0, 0), 'total_amount__16': 104.93, 'customer_id__17': 2002, 'order_id__17': 1022, 'order_date__17': datetime.datetime(2024, 1, 11, 0, 0), 'total_amount__17': 17.5, 'customer_id__18': 2003, 'order_id__18': 1023, 'order_date__18': datetime.datetime(2024, 1, 11, 0, 0), 'total_amount__18': 110.5, 'customer_id__19': 2004, 'order_id__19': 1024, 'order_date__19': datetime.datetime(2024, 1, 12, 0, 0), 'total_amount__19': 51.0, 'customer_id__20': 2005, 'order_id__20': 1025, 'order_date__20': datetime.datetime(2024, 1, 12, 0, 0), 'total_amount__20': 404.91, 'customer_id__21': 2007, 'order_id__21': 1027, 'order_date__21': datetime.datetime(2024, 1, 13, 0, 0), 'total_amount__21': 221.0, 'customer_id__22': 2009, 'order_id__22': 1029, 'order_date__22': datetime.datetime(2024, 1, 14, 0, 0), 'total_amount__22': 96.0}]
+(Background on this error at: https://sqlalche.me/e/21/f405)
+[2026-10-03 18:05:23] ETL completed.
+[2026-10-03 18:08:52] Starting ETL...
+Connected to PostgreSQL!
+fact_sales updated!
+fact_sales_summary updated!
+order_totals updated!
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2094, in _exec_insertmany_context
+    dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.NotNullViolation: null value in column "quantity" of relation "orders" violates not-null constraint
+DETAIL:  Failing row contains (1001, 2001, null, null, 2024-01-01 00:00:00, 59.97).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1679, in execute
+    return execute_function(sql, *args)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1448, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/sql/elements.py", line 533, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<9 lines>...
+        param_dict=param_dict,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1820, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2111, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e,
+        ^^
+    ...<4 lines>...
+        is_sub_exec=True,
+        ^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2332, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2094, in _exec_insertmany_context
+    dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.NotNullViolation) null value in column "quantity" of relation "orders" violates not-null constraint
+DETAIL:  Failing row contains (1001, 2001, null, null, 2024-01-01 00:00:00, 59.97).
+
+[SQL: INSERT INTO orders (order_id, customer_id, order_date, total_amount) VALUES (%(order_id__0)s, %(customer_id__0)s, %(order_date__0)s, %(total_amount__0)s), (%(order_id__1)s, %(customer_id__1)s, %(order_date__1)s, %(total_amount__1)s), (%(order_id__2)s ... 1593 characters truncated ... tal_amount__21)s), (%(order_id__22)s, %(customer_id__22)s, %(order_date__22)s, %(total_amount__22)s)]
+[parameters: {'order_date__0': datetime.datetime(2024, 1, 1, 0, 0), 'customer_id__0': 2001, 'order_id__0': 1001, 'total_amount__0': 59.97, 'order_date__1': datetime.datetime(2024, 1, 1, 0, 0), 'customer_id__1': 2002, 'order_id__1': 1002, 'total_amount__1': 5.49, 'order_date__2': datetime.datetime(2024, 1, 2, 0, 0), 'customer_id__2': 2003, 'order_id__2': 1003, 'total_amount__2': 51.0, 'order_date__3': datetime.datetime(2024, 1, 2, 0, 0), 'customer_id__3': 2004, 'order_id__3': 1004, 'total_amount__3': 39.98, 'order_date__4': datetime.datetime(2024, 1, 3, 0, 0), 'customer_id__4': 2005, 'order_id__4': 1005, 'total_amount__4': 19.5, 'order_date__5': datetime.datetime(2024, 1, 4, 0, 0), 'customer_id__5': 2007, 'order_id__5': 1007, 'total_amount__5': 116.0, 'order_date__6': datetime.datetime(2024, 1, 5, 0, 0), 'customer_id__6': 2009, 'order_id__6': 1009, 'total_amount__6': 39.95, 'order_date__7': datetime.datetime(2024, 1, 6, 0, 0), 'customer_id__7': 2012, 'order_id__7': 1012, 'total_amount__7': 44.1, 'order_date__8': datetime.datetime(2024, 1, 6, 0, 0), 'customer_id__8': 2013, 'order_id__8': 1013, 'total_amount__8': 105.0, 'order_date__9': datetime.datetime(2024, 1, 7, 0, 0), 'customer_id__9': 2014, 'order_id__9': 1014, 'total_amount__9': 798.75, 'order_date__10': datetime.datetime(2024, 1, 7, 0, 0), 'customer_id__10': 2015, 'order_id__10': 1015, 'total_amount__10': 199.98, 'order_date__11': datetime.datetime(2024, 1, 8, 0, 0), 'customer_id__11': 2016, 'order_id__11': 1016, 'total_amount__11': 480.0, 'order_date__12': datetime.datetime(2024, 1, 8, 0, 0), 'customer_id__12': 2017, 'order_id__12': 1017, 'total_amount__12': 52.5, 'order_date__13': datetime.datetime(2024, 1, 9, 0, 0), 'customer_id__13': 2018, 'order_id__13': 1018, 'total_amount__13': 132.0, 'order_date__14': datetime.datetime(2024, 1, 9, 0, 0), 'customer_id__14': 2019, 'order_id__14': 1019, 'total_amount__14': 199.99, 'order_date__15': datetime.datetime(2024, 1, 10, 0, 0), 'customer_id__15': 2020, 'order_id__15': 1020, 'total_amount__15': 47.88, 'order_date__16': datetime.datetime(2024, 1, 10, 0, 0), 'customer_id__16': 2001, 'order_id__16': 1021, 'total_amount__16': 104.93, 'order_date__17': datetime.datetime(2024, 1, 11, 0, 0), 'customer_id__17': 2002, 'order_id__17': 1022, 'total_amount__17': 17.5, 'order_date__18': datetime.datetime(2024, 1, 11, 0, 0), 'customer_id__18': 2003, 'order_id__18': 1023, 'total_amount__18': 110.5, 'order_date__19': datetime.datetime(2024, 1, 12, 0, 0), 'customer_id__19': 2004, 'order_id__19': 1024, 'total_amount__19': 51.0, 'order_date__20': datetime.datetime(2024, 1, 12, 0, 0), 'customer_id__20': 2005, 'order_id__20': 1025, 'total_amount__20': 404.91, 'order_date__21': datetime.datetime(2024, 1, 13, 0, 0), 'customer_id__21': 2007, 'order_id__21': 1027, 'total_amount__21': 221.0, 'order_date__22': datetime.datetime(2024, 1, 14, 0, 0), 'customer_id__22': 2009, 'order_id__22': 1029, 'total_amount__22': 96.0}]
+(Background on this error at: https://sqlalche.me/e/21/gkpj)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/PSQL_CSV_DB1.py", line 147, in <module>
+    orders.to_sql(
+    ~~~~~~~~~~~~~^
+        "orders",
+        ^^^^^^^^^
+    ...<2 lines>...
+        index=False
+        ^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/generic.py", line 3040, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 841, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 2037, in to_sql
+    total_inserted = sql_engine.insert_records(
+        table=table,
+    ...<7 lines>...
+        **engine_kwargs,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1571, in insert_records
+    return table.insert(chunksize=chunksize, method=method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1122, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1014, in _execute_insert
+    result = self.pd_sql.execute(self.table.insert(), data)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1681, in execute
+    raise DatabaseError(f"Execution failed on sql '{sql}': {exc}") from exc
+pandas.errors.DatabaseError: Execution failed on sql 'INSERT INTO orders (order_id, customer_id, order_date, total_amount) VALUES (:order_id, :customer_id, :order_date, :total_amount)': (psycopg2.errors.NotNullViolation) null value in column "quantity" of relation "orders" violates not-null constraint
+DETAIL:  Failing row contains (1001, 2001, null, null, 2024-01-01 00:00:00, 59.97).
+
+[SQL: INSERT INTO orders (order_id, customer_id, order_date, total_amount) VALUES (%(order_id__0)s, %(customer_id__0)s, %(order_date__0)s, %(total_amount__0)s), (%(order_id__1)s, %(customer_id__1)s, %(order_date__1)s, %(total_amount__1)s), (%(order_id__2)s ... 1593 characters truncated ... tal_amount__21)s), (%(order_id__22)s, %(customer_id__22)s, %(order_date__22)s, %(total_amount__22)s)]
+[parameters: {'order_date__0': datetime.datetime(2024, 1, 1, 0, 0), 'customer_id__0': 2001, 'order_id__0': 1001, 'total_amount__0': 59.97, 'order_date__1': datetime.datetime(2024, 1, 1, 0, 0), 'customer_id__1': 2002, 'order_id__1': 1002, 'total_amount__1': 5.49, 'order_date__2': datetime.datetime(2024, 1, 2, 0, 0), 'customer_id__2': 2003, 'order_id__2': 1003, 'total_amount__2': 51.0, 'order_date__3': datetime.datetime(2024, 1, 2, 0, 0), 'customer_id__3': 2004, 'order_id__3': 1004, 'total_amount__3': 39.98, 'order_date__4': datetime.datetime(2024, 1, 3, 0, 0), 'customer_id__4': 2005, 'order_id__4': 1005, 'total_amount__4': 19.5, 'order_date__5': datetime.datetime(2024, 1, 4, 0, 0), 'customer_id__5': 2007, 'order_id__5': 1007, 'total_amount__5': 116.0, 'order_date__6': datetime.datetime(2024, 1, 5, 0, 0), 'customer_id__6': 2009, 'order_id__6': 1009, 'total_amount__6': 39.95, 'order_date__7': datetime.datetime(2024, 1, 6, 0, 0), 'customer_id__7': 2012, 'order_id__7': 1012, 'total_amount__7': 44.1, 'order_date__8': datetime.datetime(2024, 1, 6, 0, 0), 'customer_id__8': 2013, 'order_id__8': 1013, 'total_amount__8': 105.0, 'order_date__9': datetime.datetime(2024, 1, 7, 0, 0), 'customer_id__9': 2014, 'order_id__9': 1014, 'total_amount__9': 798.75, 'order_date__10': datetime.datetime(2024, 1, 7, 0, 0), 'customer_id__10': 2015, 'order_id__10': 1015, 'total_amount__10': 199.98, 'order_date__11': datetime.datetime(2024, 1, 8, 0, 0), 'customer_id__11': 2016, 'order_id__11': 1016, 'total_amount__11': 480.0, 'order_date__12': datetime.datetime(2024, 1, 8, 0, 0), 'customer_id__12': 2017, 'order_id__12': 1017, 'total_amount__12': 52.5, 'order_date__13': datetime.datetime(2024, 1, 9, 0, 0), 'customer_id__13': 2018, 'order_id__13': 1018, 'total_amount__13': 132.0, 'order_date__14': datetime.datetime(2024, 1, 9, 0, 0), 'customer_id__14': 2019, 'order_id__14': 1019, 'total_amount__14': 199.99, 'order_date__15': datetime.datetime(2024, 1, 10, 0, 0), 'customer_id__15': 2020, 'order_id__15': 1020, 'total_amount__15': 47.88, 'order_date__16': datetime.datetime(2024, 1, 10, 0, 0), 'customer_id__16': 2001, 'order_id__16': 1021, 'total_amount__16': 104.93, 'order_date__17': datetime.datetime(2024, 1, 11, 0, 0), 'customer_id__17': 2002, 'order_id__17': 1022, 'total_amount__17': 17.5, 'order_date__18': datetime.datetime(2024, 1, 11, 0, 0), 'customer_id__18': 2003, 'order_id__18': 1023, 'total_amount__18': 110.5, 'order_date__19': datetime.datetime(2024, 1, 12, 0, 0), 'customer_id__19': 2004, 'order_id__19': 1024, 'total_amount__19': 51.0, 'order_date__20': datetime.datetime(2024, 1, 12, 0, 0), 'customer_id__20': 2005, 'order_id__20': 1025, 'total_amount__20': 404.91, 'order_date__21': datetime.datetime(2024, 1, 13, 0, 0), 'customer_id__21': 2007, 'order_id__21': 1027, 'total_amount__21': 221.0, 'order_date__22': datetime.datetime(2024, 1, 14, 0, 0), 'customer_id__22': 2009, 'order_id__22': 1029, 'total_amount__22': 96.0}]
+(Background on this error at: https://sqlalche.me/e/21/gkpj)
+[2026-10-03 18:08:52] ETL completed.
+[2026-10-03 18:12:31] Starting ETL...
+Connected to PostgreSQL!
+fact_sales updated!
+fact_sales_summary updated!
+order_totals updated!
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/PSQL_CSV_DB1.py", line 140, in <module>
+    orders = df[[
+             ~~^^
+        "order_id",
+        ^^^^^^^^^^^
+    ...<3 lines>...
+        "total_amount"
+        ^^^^^^^^^^^^^^
+    ]]
+    ^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/frame.py", line 4384, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/indexes/base.py", line 6302, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/indexes/base.py", line 6355, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['quantityorder_date'] not in index"
+[2026-10-03 18:12:31] ETL completed.
+[2026-10-03 18:13:53] Starting ETL...
+Connected to PostgreSQL!
+fact_sales updated!
+fact_sales_summary updated!
+order_totals updated!
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2094, in _exec_insertmany_context
+    dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.ForeignKeyViolation: insert or update on table "orders" violates foreign key constraint "orders_customer_id_fkey"
+DETAIL:  Key (customer_id)=(2001) is not present in table "customers".
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1679, in execute
+    return execute_function(sql, *args)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1448, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/sql/elements.py", line 533, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<9 lines>...
+        param_dict=param_dict,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1820, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2111, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e,
+        ^^
+    ...<4 lines>...
+        is_sub_exec=True,
+        ^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2332, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2094, in _exec_insertmany_context
+    dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.ForeignKeyViolation) insert or update on table "orders" violates foreign key constraint "orders_customer_id_fkey"
+DETAIL:  Key (customer_id)=(2001) is not present in table "customers".
+
+[SQL: INSERT INTO orders (order_id, customer_id, quantity, order_date, total_amount) VALUES (%(order_id__0)s, %(customer_id__0)s, %(quantity__0)s, %(order_date__0)s, %(total_amount__0)s), (%(order_id__1)s, %(customer_id__1)s, %(quantity__1)s, %(order_date_ ... 2007 characters truncated ...  (%(order_id__22)s, %(customer_id__22)s, %(quantity__22)s, %(order_date__22)s, %(total_amount__22)s)]
+[parameters: {'total_amount__0': 59.97, 'order_id__0': 1001, 'quantity__0': 3, 'customer_id__0': 2001, 'order_date__0': datetime.datetime(2024, 1, 1, 0, 0), 'total_amount__1': 5.49, 'order_id__1': 1002, 'quantity__1': 1, 'customer_id__1': 2002, 'order_date__1': datetime.datetime(2024, 1, 1, 0, 0), 'total_amount__2': 51.0, 'order_id__2': 1003, 'quantity__2': 4, 'customer_id__2': 2003, 'order_date__2': datetime.datetime(2024, 1, 2, 0, 0), 'total_amount__3': 39.98, 'order_id__3': 1004, 'quantity__3': 2, 'customer_id__3': 2004, 'order_date__3': datetime.datetime(2024, 1, 2, 0, 0), 'total_amount__4': 19.5, 'order_id__4': 1005, 'quantity__4': 6, 'customer_id__4': 2005, 'order_date__4': datetime.datetime(2024, 1, 3, 0, 0), 'total_amount__5': 116.0, 'order_id__5': 1007, 'quantity__5': 8, 'customer_id__5': 2007, 'order_date__5': datetime.datetime(2024, 1, 4, 0, 0), 'total_amount__6': 39.95, 'order_id__6': 1009, 'quantity__6': 5, 'customer_id__6': 2009, 'order_date__6': datetime.datetime(2024, 1, 5, 0, 0), 'total_amount__7': 44.1, 'order_id__7': 1012, 'quantity__7': 1, 'customer_id__7': 2012, 'order_date__7': datetime.datetime(2024, 1, 6, 0, 0), 'total_amount__8': 105.0, 'order_id__8': 1013, 'quantity__8': 7, 'customer_id__8': 2013, 'order_date__8': datetime.datetime(2024, 1, 6, 0, 0), 'total_amount__9': 798.75, 'order_id__9': 1014, 'quantity__9': 9, 'customer_id__9': 2014, 'order_date__9': datetime.datetime(2024, 1, 7, 0, 0) ... 15 parameters truncated ... 'total_amount__13': 132.0, 'order_id__13': 1018, 'quantity__13': 6, 'customer_id__13': 2018, 'order_date__13': datetime.datetime(2024, 1, 9, 0, 0), 'total_amount__14': 199.99, 'order_id__14': 1019, 'quantity__14': 1, 'customer_id__14': 2019, 'order_date__14': datetime.datetime(2024, 1, 9, 0, 0), 'total_amount__15': 47.88, 'order_id__15': 1020, 'quantity__15': 12, 'customer_id__15': 2020, 'order_date__15': datetime.datetime(2024, 1, 10, 0, 0), 'total_amount__16': 104.93, 'order_id__16': 1021, 'quantity__16': 7, 'customer_id__16': 2001, 'order_date__16': datetime.datetime(2024, 1, 10, 0, 0), 'total_amount__17': 17.5, 'order_id__17': 1022, 'quantity__17': 2, 'customer_id__17': 2002, 'order_date__17': datetime.datetime(2024, 1, 11, 0, 0), 'total_amount__18': 110.5, 'order_id__18': 1023, 'quantity__18': 5, 'customer_id__18': 2003, 'order_date__18': datetime.datetime(2024, 1, 11, 0, 0), 'total_amount__19': 51.0, 'order_id__19': 1024, 'quantity__19': 3, 'customer_id__19': 2004, 'order_date__19': datetime.datetime(2024, 1, 12, 0, 0), 'total_amount__20': 404.91, 'order_id__20': 1025, 'quantity__20': 9, 'customer_id__20': 2005, 'order_date__20': datetime.datetime(2024, 1, 12, 0, 0), 'total_amount__21': 221.0, 'order_id__21': 1027, 'quantity__21': 4, 'customer_id__21': 2007, 'order_date__21': datetime.datetime(2024, 1, 13, 0, 0), 'total_amount__22': 96.0, 'order_id__22': 1029, 'quantity__22': 8, 'customer_id__22': 2009, 'order_date__22': datetime.datetime(2024, 1, 14, 0, 0)}]
+(Background on this error at: https://sqlalche.me/e/21/gkpj)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/PSQL_CSV_DB1.py", line 148, in <module>
+    orders.to_sql(
+    ~~~~~~~~~~~~~^
+        "orders",
+        ^^^^^^^^^
+    ...<2 lines>...
+        index=False
+        ^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/generic.py", line 3040, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 841, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 2037, in to_sql
+    total_inserted = sql_engine.insert_records(
+        table=table,
+    ...<7 lines>...
+        **engine_kwargs,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1571, in insert_records
+    return table.insert(chunksize=chunksize, method=method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1122, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1014, in _execute_insert
+    result = self.pd_sql.execute(self.table.insert(), data)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1681, in execute
+    raise DatabaseError(f"Execution failed on sql '{sql}': {exc}") from exc
+pandas.errors.DatabaseError: Execution failed on sql 'INSERT INTO orders (order_id, customer_id, quantity, order_date, total_amount) VALUES (:order_id, :customer_id, :quantity, :order_date, :total_amount)': (psycopg2.errors.ForeignKeyViolation) insert or update on table "orders" violates foreign key constraint "orders_customer_id_fkey"
+DETAIL:  Key (customer_id)=(2001) is not present in table "customers".
+
+[SQL: INSERT INTO orders (order_id, customer_id, quantity, order_date, total_amount) VALUES (%(order_id__0)s, %(customer_id__0)s, %(quantity__0)s, %(order_date__0)s, %(total_amount__0)s), (%(order_id__1)s, %(customer_id__1)s, %(quantity__1)s, %(order_date_ ... 2007 characters truncated ...  (%(order_id__22)s, %(customer_id__22)s, %(quantity__22)s, %(order_date__22)s, %(total_amount__22)s)]
+[parameters: {'total_amount__0': 59.97, 'order_id__0': 1001, 'quantity__0': 3, 'customer_id__0': 2001, 'order_date__0': datetime.datetime(2024, 1, 1, 0, 0), 'total_amount__1': 5.49, 'order_id__1': 1002, 'quantity__1': 1, 'customer_id__1': 2002, 'order_date__1': datetime.datetime(2024, 1, 1, 0, 0), 'total_amount__2': 51.0, 'order_id__2': 1003, 'quantity__2': 4, 'customer_id__2': 2003, 'order_date__2': datetime.datetime(2024, 1, 2, 0, 0), 'total_amount__3': 39.98, 'order_id__3': 1004, 'quantity__3': 2, 'customer_id__3': 2004, 'order_date__3': datetime.datetime(2024, 1, 2, 0, 0), 'total_amount__4': 19.5, 'order_id__4': 1005, 'quantity__4': 6, 'customer_id__4': 2005, 'order_date__4': datetime.datetime(2024, 1, 3, 0, 0), 'total_amount__5': 116.0, 'order_id__5': 1007, 'quantity__5': 8, 'customer_id__5': 2007, 'order_date__5': datetime.datetime(2024, 1, 4, 0, 0), 'total_amount__6': 39.95, 'order_id__6': 1009, 'quantity__6': 5, 'customer_id__6': 2009, 'order_date__6': datetime.datetime(2024, 1, 5, 0, 0), 'total_amount__7': 44.1, 'order_id__7': 1012, 'quantity__7': 1, 'customer_id__7': 2012, 'order_date__7': datetime.datetime(2024, 1, 6, 0, 0), 'total_amount__8': 105.0, 'order_id__8': 1013, 'quantity__8': 7, 'customer_id__8': 2013, 'order_date__8': datetime.datetime(2024, 1, 6, 0, 0), 'total_amount__9': 798.75, 'order_id__9': 1014, 'quantity__9': 9, 'customer_id__9': 2014, 'order_date__9': datetime.datetime(2024, 1, 7, 0, 0) ... 15 parameters truncated ... 'total_amount__13': 132.0, 'order_id__13': 1018, 'quantity__13': 6, 'customer_id__13': 2018, 'order_date__13': datetime.datetime(2024, 1, 9, 0, 0), 'total_amount__14': 199.99, 'order_id__14': 1019, 'quantity__14': 1, 'customer_id__14': 2019, 'order_date__14': datetime.datetime(2024, 1, 9, 0, 0), 'total_amount__15': 47.88, 'order_id__15': 1020, 'quantity__15': 12, 'customer_id__15': 2020, 'order_date__15': datetime.datetime(2024, 1, 10, 0, 0), 'total_amount__16': 104.93, 'order_id__16': 1021, 'quantity__16': 7, 'customer_id__16': 2001, 'order_date__16': datetime.datetime(2024, 1, 10, 0, 0), 'total_amount__17': 17.5, 'order_id__17': 1022, 'quantity__17': 2, 'customer_id__17': 2002, 'order_date__17': datetime.datetime(2024, 1, 11, 0, 0), 'total_amount__18': 110.5, 'order_id__18': 1023, 'quantity__18': 5, 'customer_id__18': 2003, 'order_date__18': datetime.datetime(2024, 1, 11, 0, 0), 'total_amount__19': 51.0, 'order_id__19': 1024, 'quantity__19': 3, 'customer_id__19': 2004, 'order_date__19': datetime.datetime(2024, 1, 12, 0, 0), 'total_amount__20': 404.91, 'order_id__20': 1025, 'quantity__20': 9, 'customer_id__20': 2005, 'order_date__20': datetime.datetime(2024, 1, 12, 0, 0), 'total_amount__21': 221.0, 'order_id__21': 1027, 'quantity__21': 4, 'customer_id__21': 2007, 'order_date__21': datetime.datetime(2024, 1, 13, 0, 0), 'total_amount__22': 96.0, 'order_id__22': 1029, 'quantity__22': 8, 'customer_id__22': 2009, 'order_date__22': datetime.datetime(2024, 1, 14, 0, 0)}]
+(Background on this error at: https://sqlalche.me/e/21/gkpj)
+[2026-10-03 18:13:53] ETL completed.
+[2026-10-03 18:17:25] Starting ETL...
+Connected to PostgreSQL!
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2094, in _exec_insertmany_context
+    dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.NotNullViolation: null value in column "name" of relation "customers" violates not-null constraint
+DETAIL:  Failing row contains (2001, null, null, 2026-10-03 18:17:25.96881).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1679, in execute
+    return execute_function(sql, *args)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1448, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/sql/elements.py", line 533, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<9 lines>...
+        param_dict=param_dict,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1820, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2111, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e,
+        ^^
+    ...<4 lines>...
+        is_sub_exec=True,
+        ^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2332, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2094, in _exec_insertmany_context
+    dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.NotNullViolation) null value in column "name" of relation "customers" violates not-null constraint
+DETAIL:  Failing row contains (2001, null, null, 2026-10-03 18:17:25.96881).
+
+[SQL: INSERT INTO customers (customer_id) VALUES (%(customer_id__0)s), (%(customer_id__1)s), (%(customer_id__2)s), (%(customer_id__3)s), (%(customer_id__4)s), (%(customer_id__5)s), (%(customer_id__6)s), (%(customer_id__7)s), (%(customer_id__8)s), (%(customer_id__9)s), (%(customer_id__10)s), (%(customer_id__11)s), (%(customer_id__12)s), (%(customer_id__13)s), (%(customer_id__14)s), (%(customer_id__15)s)]
+[parameters: {'customer_id__0': 2001, 'customer_id__1': 2002, 'customer_id__2': 2003, 'customer_id__3': 2004, 'customer_id__4': 2005, 'customer_id__5': 2007, 'customer_id__6': 2009, 'customer_id__7': 2012, 'customer_id__8': 2013, 'customer_id__9': 2014, 'customer_id__10': 2015, 'customer_id__11': 2016, 'customer_id__12': 2017, 'customer_id__13': 2018, 'customer_id__14': 2019, 'customer_id__15': 2020}]
+(Background on this error at: https://sqlalche.me/e/21/gkpj)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/PSQL_CSV_DB1.py", line 83, in <module>
+    customers.to_sql(
+    ~~~~~~~~~~~~~~~~^
+        "customers",
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        index=False
+        ^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/generic.py", line 3040, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 841, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 2037, in to_sql
+    total_inserted = sql_engine.insert_records(
+        table=table,
+    ...<7 lines>...
+        **engine_kwargs,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1571, in insert_records
+    return table.insert(chunksize=chunksize, method=method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1122, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1014, in _execute_insert
+    result = self.pd_sql.execute(self.table.insert(), data)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1681, in execute
+    raise DatabaseError(f"Execution failed on sql '{sql}': {exc}") from exc
+pandas.errors.DatabaseError: Execution failed on sql 'INSERT INTO customers (customer_id) VALUES (:customer_id)': (psycopg2.errors.NotNullViolation) null value in column "name" of relation "customers" violates not-null constraint
+DETAIL:  Failing row contains (2001, null, null, 2026-10-03 18:17:25.96881).
+
+[SQL: INSERT INTO customers (customer_id) VALUES (%(customer_id__0)s), (%(customer_id__1)s), (%(customer_id__2)s), (%(customer_id__3)s), (%(customer_id__4)s), (%(customer_id__5)s), (%(customer_id__6)s), (%(customer_id__7)s), (%(customer_id__8)s), (%(customer_id__9)s), (%(customer_id__10)s), (%(customer_id__11)s), (%(customer_id__12)s), (%(customer_id__13)s), (%(customer_id__14)s), (%(customer_id__15)s)]
+[parameters: {'customer_id__0': 2001, 'customer_id__1': 2002, 'customer_id__2': 2003, 'customer_id__3': 2004, 'customer_id__4': 2005, 'customer_id__5': 2007, 'customer_id__6': 2009, 'customer_id__7': 2012, 'customer_id__8': 2013, 'customer_id__9': 2014, 'customer_id__10': 2015, 'customer_id__11': 2016, 'customer_id__12': 2017, 'customer_id__13': 2018, 'customer_id__14': 2019, 'customer_id__15': 2020}]
+(Background on this error at: https://sqlalche.me/e/21/gkpj)
+[2026-10-03 18:17:25] ETL completed.
+[2026-10-03 22:28:31] Starting ETL...
+Connected to PostgreSQL!
+fact_sales updated!
+fact_sales_summary updated!
+order_totals updated!
+orders updated!
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2094, in _exec_insertmany_context
+    dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column "avg_price" of relation "products" does not exist
+LINE 1: INSERT INTO products (product_id, avg_price, total_sold) VAL...
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1679, in execute
+    return execute_function(sql, *args)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1448, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/sql/elements.py", line 533, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<9 lines>...
+        param_dict=param_dict,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1820, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2111, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e,
+        ^^
+    ...<4 lines>...
+        is_sub_exec=True,
+        ^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2332, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2094, in _exec_insertmany_context
+    dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column "avg_price" of relation "products" does not exist
+LINE 1: INSERT INTO products (product_id, avg_price, total_sold) VAL...
+                                          ^
+
+[SQL: INSERT INTO products (product_id, avg_price, total_sold) VALUES (%(product_id__0)s, %(avg_price__0)s, %(total_sold__0)s), (%(product_id__1)s, %(avg_price__1)s, %(total_sold__1)s), (%(product_id__2)s, %(avg_price__2)s, %(total_sold__2)s), (%(product_i ... 780 characters truncated ...  %(avg_price__16)s, %(total_sold__16)s), (%(product_id__17)s, %(avg_price__17)s, %(total_sold__17)s)]
+[parameters: {'avg_price__0': 18.323333333333334, 'product_id__0': 501, 'total_sold__0': 12, 'avg_price__1': 7.12, 'product_id__1': 502, 'total_sold__1': 3, 'avg_price__2': 17.425, 'product_id__2': 503, 'total_sold__2': 9, 'avg_price__3': 10.125, 'product_id__3': 504, 'total_sold__3': 9, 'avg_price__4': 44.99, 'product_id__4': 505, 'total_sold__4': 9, 'avg_price__5': 14.5, 'product_id__5': 506, 'total_sold__5': 8, 'avg_price__6': 55.25, 'product_id__6': 507, 'total_sold__6': 4, 'avg_price__7': 7.99, 'product_id__7': 508, 'total_sold__7': 5, 'avg_price__8': 12.0, 'product_id__8': 509, 'total_sold__8': 8, 'avg_price__9': 44.1, 'product_id__9': 511, 'total_sold__9': 1, 'avg_price__10': 15.0, 'product_id__10': 512, 'total_sold__10': 7, 'avg_price__11': 88.75, 'product_id__11': 513, 'total_sold__11': 9, 'avg_price__12': 99.99, 'product_id__12': 514, 'total_sold__12': 2, 'avg_price__13': 120.0, 'product_id__13': 515, 'total_sold__13': 4, 'avg_price__14': 17.5, 'product_id__14': 516, 'total_sold__14': 3, 'avg_price__15': 22.0, 'product_id__15': 517, 'total_sold__15': 6, 'avg_price__16': 199.99, 'product_id__16': 518, 'total_sold__16': 1, 'avg_price__17': 3.99, 'product_id__17': 519, 'total_sold__17': 12}]
+(Background on this error at: https://sqlalche.me/e/21/f405)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/PSQL_CSV_DB1.py", line 178, in <module>
+    products.to_sql(
+    ~~~~~~~~~~~~~~~^
+        "products",
+        ^^^^^^^^^^^
+    ...<2 lines>...
+        index=False
+        ^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/generic.py", line 3040, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 841, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 2037, in to_sql
+    total_inserted = sql_engine.insert_records(
+        table=table,
+    ...<7 lines>...
+        **engine_kwargs,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1571, in insert_records
+    return table.insert(chunksize=chunksize, method=method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1122, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1014, in _execute_insert
+    result = self.pd_sql.execute(self.table.insert(), data)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1681, in execute
+    raise DatabaseError(f"Execution failed on sql '{sql}': {exc}") from exc
+pandas.errors.DatabaseError: Execution failed on sql 'INSERT INTO products (product_id, avg_price, total_sold) VALUES (:product_id, :avg_price, :total_sold)': (psycopg2.errors.UndefinedColumn) column "avg_price" of relation "products" does not exist
+LINE 1: INSERT INTO products (product_id, avg_price, total_sold) VAL...
+                                          ^
+
+[SQL: INSERT INTO products (product_id, avg_price, total_sold) VALUES (%(product_id__0)s, %(avg_price__0)s, %(total_sold__0)s), (%(product_id__1)s, %(avg_price__1)s, %(total_sold__1)s), (%(product_id__2)s, %(avg_price__2)s, %(total_sold__2)s), (%(product_i ... 780 characters truncated ...  %(avg_price__16)s, %(total_sold__16)s), (%(product_id__17)s, %(avg_price__17)s, %(total_sold__17)s)]
+[parameters: {'avg_price__0': 18.323333333333334, 'product_id__0': 501, 'total_sold__0': 12, 'avg_price__1': 7.12, 'product_id__1': 502, 'total_sold__1': 3, 'avg_price__2': 17.425, 'product_id__2': 503, 'total_sold__2': 9, 'avg_price__3': 10.125, 'product_id__3': 504, 'total_sold__3': 9, 'avg_price__4': 44.99, 'product_id__4': 505, 'total_sold__4': 9, 'avg_price__5': 14.5, 'product_id__5': 506, 'total_sold__5': 8, 'avg_price__6': 55.25, 'product_id__6': 507, 'total_sold__6': 4, 'avg_price__7': 7.99, 'product_id__7': 508, 'total_sold__7': 5, 'avg_price__8': 12.0, 'product_id__8': 509, 'total_sold__8': 8, 'avg_price__9': 44.1, 'product_id__9': 511, 'total_sold__9': 1, 'avg_price__10': 15.0, 'product_id__10': 512, 'total_sold__10': 7, 'avg_price__11': 88.75, 'product_id__11': 513, 'total_sold__11': 9, 'avg_price__12': 99.99, 'product_id__12': 514, 'total_sold__12': 2, 'avg_price__13': 120.0, 'product_id__13': 515, 'total_sold__13': 4, 'avg_price__14': 17.5, 'product_id__14': 516, 'total_sold__14': 3, 'avg_price__15': 22.0, 'product_id__15': 517, 'total_sold__15': 6, 'avg_price__16': 199.99, 'product_id__16': 518, 'total_sold__16': 1, 'avg_price__17': 3.99, 'product_id__17': 519, 'total_sold__17': 12}]
+(Background on this error at: https://sqlalche.me/e/21/f405)
+[2026-10-03 22:28:31] ETL completed.
+[2026-10-03 22:36:31] Starting ETL...
+Connected to PostgreSQL!
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2094, in _exec_insertmany_context
+    dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "customers_pkey"
+DETAIL:  Key (customer_id)=(2001) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1679, in execute
+    return execute_function(sql, *args)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1448, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/sql/elements.py", line 533, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<9 lines>...
+        param_dict=param_dict,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1820, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2111, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e,
+        ^^
+    ...<4 lines>...
+        is_sub_exec=True,
+        ^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2332, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2094, in _exec_insertmany_context
+    dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "customers_pkey"
+DETAIL:  Key (customer_id)=(2001) already exists.
+
+[SQL: INSERT INTO customers (customer_id, name, email) VALUES (%(customer_id__0)s, %(name__0)s, %(email__0)s), (%(customer_id__1)s, %(name__1)s, %(email__1)s), (%(customer_id__2)s, %(name__2)s, %(email__2)s), (%(customer_id__3)s, %(name__3)s, %(email__3)s) ... 506 characters truncated ... (customer_id__14)s, %(name__14)s, %(email__14)s), (%(customer_id__15)s, %(name__15)s, %(email__15)s)]
+[parameters: {'customer_id__0': 2001, 'email__0': 'customer2001@example.com', 'name__0': 'Customer 2001', 'customer_id__1': 2002, 'email__1': 'customer2002@example.com', 'name__1': 'Customer 2002', 'customer_id__2': 2003, 'email__2': 'customer2003@example.com', 'name__2': 'Customer 2003', 'customer_id__3': 2004, 'email__3': 'customer2004@example.com', 'name__3': 'Customer 2004', 'customer_id__4': 2005, 'email__4': 'customer2005@example.com', 'name__4': 'Customer 2005', 'customer_id__5': 2007, 'email__5': 'customer2007@example.com', 'name__5': 'Customer 2007', 'customer_id__6': 2009, 'email__6': 'customer2009@example.com', 'name__6': 'Customer 2009', 'customer_id__7': 2012, 'email__7': 'customer2012@example.com', 'name__7': 'Customer 2012', 'customer_id__8': 2013, 'email__8': 'customer2013@example.com', 'name__8': 'Customer 2013', 'customer_id__9': 2014, 'email__9': 'customer2014@example.com', 'name__9': 'Customer 2014', 'customer_id__10': 2015, 'email__10': 'customer2015@example.com', 'name__10': 'Customer 2015', 'customer_id__11': 2016, 'email__11': 'customer2016@example.com', 'name__11': 'Customer 2016', 'customer_id__12': 2017, 'email__12': 'customer2017@example.com', 'name__12': 'Customer 2017', 'customer_id__13': 2018, 'email__13': 'customer2018@example.com', 'name__13': 'Customer 2018', 'customer_id__14': 2019, 'email__14': 'customer2019@example.com', 'name__14': 'Customer 2019', 'customer_id__15': 2020, 'email__15': 'customer2020@example.com', 'name__15': 'Customer 2020'}]
+(Background on this error at: https://sqlalche.me/e/21/gkpj)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/PSQL_CSV_DB1.py", line 85, in <module>
+    customers.to_sql(
+    ~~~~~~~~~~~~~~~~^
+        "customers",
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        index=False
+        ^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/generic.py", line 3040, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 841, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 2037, in to_sql
+    total_inserted = sql_engine.insert_records(
+        table=table,
+    ...<7 lines>...
+        **engine_kwargs,
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1571, in insert_records
+    return table.insert(chunksize=chunksize, method=method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1122, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1014, in _execute_insert
+    result = self.pd_sql.execute(self.table.insert(), data)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/io/sql.py", line 1681, in execute
+    raise DatabaseError(f"Execution failed on sql '{sql}': {exc}") from exc
+pandas.errors.DatabaseError: Execution failed on sql 'INSERT INTO customers (customer_id, name, email) VALUES (:customer_id, :name, :email)': (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "customers_pkey"
+DETAIL:  Key (customer_id)=(2001) already exists.
+
+[SQL: INSERT INTO customers (customer_id, name, email) VALUES (%(customer_id__0)s, %(name__0)s, %(email__0)s), (%(customer_id__1)s, %(name__1)s, %(email__1)s), (%(customer_id__2)s, %(name__2)s, %(email__2)s), (%(customer_id__3)s, %(name__3)s, %(email__3)s) ... 506 characters truncated ... (customer_id__14)s, %(name__14)s, %(email__14)s), (%(customer_id__15)s, %(name__15)s, %(email__15)s)]
+[parameters: {'customer_id__0': 2001, 'email__0': 'customer2001@example.com', 'name__0': 'Customer 2001', 'customer_id__1': 2002, 'email__1': 'customer2002@example.com', 'name__1': 'Customer 2002', 'customer_id__2': 2003, 'email__2': 'customer2003@example.com', 'name__2': 'Customer 2003', 'customer_id__3': 2004, 'email__3': 'customer2004@example.com', 'name__3': 'Customer 2004', 'customer_id__4': 2005, 'email__4': 'customer2005@example.com', 'name__4': 'Customer 2005', 'customer_id__5': 2007, 'email__5': 'customer2007@example.com', 'name__5': 'Customer 2007', 'customer_id__6': 2009, 'email__6': 'customer2009@example.com', 'name__6': 'Customer 2009', 'customer_id__7': 2012, 'email__7': 'customer2012@example.com', 'name__7': 'Customer 2012', 'customer_id__8': 2013, 'email__8': 'customer2013@example.com', 'name__8': 'Customer 2013', 'customer_id__9': 2014, 'email__9': 'customer2014@example.com', 'name__9': 'Customer 2014', 'customer_id__10': 2015, 'email__10': 'customer2015@example.com', 'name__10': 'Customer 2015', 'customer_id__11': 2016, 'email__11': 'customer2016@example.com', 'name__11': 'Customer 2016', 'customer_id__12': 2017, 'email__12': 'customer2017@example.com', 'name__12': 'Customer 2017', 'customer_id__13': 2018, 'email__13': 'customer2018@example.com', 'name__13': 'Customer 2018', 'customer_id__14': 2019, 'email__14': 'customer2019@example.com', 'name__14': 'Customer 2019', 'customer_id__15': 2020, 'email__15': 'customer2020@example.com', 'name__15': 'Customer 2020'}]
+(Background on this error at: https://sqlalche.me/e/21/gkpj)
+[2026-10-03 22:36:31] ETL completed.
+[2026-10-03 22:44:53] Starting ETL...
+Connected to PostgreSQL!
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/PSQL_CSV_DB1.py", line 82, in <module>
+    customers = df[["customer_id","name","email"]].drop_duplicates()
+                ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/frame.py", line 4384, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/indexes/base.py", line 6302, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/pandas/core/indexes/base.py", line 6355, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['name', 'email'] not in index"
+[2026-10-03 22:44:53] ETL completed.
+[2026-10-03 22:46:31] Starting ETL...
+Connected to PostgreSQL!
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/PSQL_CSV_DB1.py", line 86, in <module>
+    stmt = insert(customers_table).values(customers.to_dict(orient="records"))
+                  ^^^^^^^^^^^^^^^
+NameError: name 'customers_table' is not defined
+[2026-10-03 22:46:31] ETL completed.
+[2026-10-03 22:47:24] Starting ETL...
+Connected to PostgreSQL!
+Traceback (most recent call last):
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/PSQL_CSV_DB1.py", line 86, in <module>
+    stmt = insert(customers).values(customers.to_dict(orient="records"))
+           ~~~~~~^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/dialects/postgresql/dml.py", line 61, in insert
+    return Insert(table)
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/sql/dml.py", line 1287, in __init__
+    super().__init__(table)
+    ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/sql/dml.py", line 1037, in __init__
+    self.table = coercions.expect(
+                 ~~~~~~~~~~~~~~~~^
+        roles.DMLTableRole, table, apply_propagate_attrs=self
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/sql/coercions.py", line 405, in expect
+    resolved = impl._literal_coercion(
+        element, argname=argname, **kw
+    )
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/sql/coercions.py", line 614, in _literal_coercion
+    self._raise_for_expected(element, argname)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/sql/coercions.py", line 705, in _raise_for_expected
+    super()._raise_for_expected(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        element,
+        ^^^^^^^^
+    ...<5 lines>...
+        **kw,
+        ^^^^^
+    )
+    ^
+  File "/home/rose@mxrc.org/Documents/RoseGitHub/Project2/venv/lib/python3.14/site-packages/sqlalchemy/sql/coercions.py", line 528, in _raise_for_expected
+    raise exc.ArgumentError(msg, code=code) from err
+sqlalchemy.exc.ArgumentError: subject table for an INSERT, UPDATE or DELETE expected, got     customer_id           name                     email
+0          2001  Customer 2001  customer2001@example.com
+1          2002  Customer 2002  customer2002@example.com
+2          2003  Customer 2003  customer2003@example.com
+3          2004  Customer 2004  customer2004@example.com
+4          2005  Customer 2005  customer2005@example.com
+5          2007  Customer 2007  customer2007@example.com
+6          2009  Customer 2009  customer2009@example.com
+7          2012  Customer 2012  customer2012@example.com
+8          2013  Customer 2013  customer2013@example.com
+9          2014  Customer 2014  customer2014@example.com
+10         2015  Customer 2015  customer2015@example.com
+11         2016  Customer 2016  customer2016@example.com
+12         2017  Customer 2017  customer2017@example.com
+13         2018  Customer 2018  customer2018@example.com
+14         2019  Customer 2019  customer2019@example.com
+15         2020  Customer 2020  customer2020@example.com.
+[2026-10-03 22:47:24] ETL completed.
